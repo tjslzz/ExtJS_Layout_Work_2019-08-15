@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout HomeWork</title>
+
+    <link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
+    <script type="text/javascript" src="../adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../ext-all.js"></script>
+    <script type="text/javascript" src="layout.js"></script>
+    <script>
+        Ext.onReady(function () {
+            //出口
+            let layout = new Ext.Viewport({
+                autoScroll: true,
+                html: "<div id = 'layout'></div>"
+            })
+            layout.show()
+
+            //主类
+            let main = new Ext.Container({
+                renderTo: 'layout',
+                layout: 'border',
+                style: "margin: 50px 0 0 200px",
+                height: 800,
+                width: 1500,
+                defaults: {
+                    collapsible: true,
+                    bodyStyle: 'padding:15px'
+                },
+                items: [{
+                    region: 'north',
+                    height: 100,
+                    layout: 'fit',
+                }, {
+                    region: 'south',
+                    height: 100,
+                    layout: 'fit',
+                }, {
+                    region: 'west',
+                    width: 100,
+                    collapsible: true,
+                    layout: 'fit',
+                }, {
+                    region: 'east',
+                    width: 100,
+                    collapsible: true,
+                    layout: 'fit',
+                }, cardLayout]
+            });
+        });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
