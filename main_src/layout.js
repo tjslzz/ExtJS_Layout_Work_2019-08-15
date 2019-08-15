@@ -37,36 +37,52 @@ let SecondQuestion = new Ext.form.FormPanel({
     }]
 })
 //提交
-let submitConfig = {
+let submitConfig = new Ext.form.FormPanel({
     xtype: 'form',
     id: 'card-2',
-    labelWidth: 75,
-
-    defaultType: 'textfield',
+    labelWidth: 100,
     items: [{
+        xtype:'textfield',
         fieldLabel: '第一题',
         name: 'first',
         id: 'first',
         allowBlank: false,
     }, {
+        width:500,
+        xtype:'textarea',
         fieldLabel: '最后一题',
         name: 'last',
         id: 'last',
         allowBlank: false
     }
     ],
-    buttons: [
-        { text: 'Save' },
-        { text: 'Cancel' }
-    ]
-}
+    buttons: [{
+        text: '重置',
+        handler: function () {
+            Ext.getCmp('card-2').getForm().reset();
+        }
+    }, {
+        text: '提交',
+        handler: function () {
+            if (Ext.getCmp('card-2').getForm().isValid()) {
+                Ext.Msg.alert('Congratulation!', Ext.getCmp('card-2').getForm().getValues(true).replace(/&/g, ', '));
+            }
+
+        }
+    }]
+})
+let anser1 = Ext.getCmp('card-0').items.items
+let anser2 = Ext.getCmp('card-1').items.items
 //布局
 let navHandler = function (direction) {
     var l = Ext.getCmp('card').getLayout();
     var i = l.activeItem.id.split('card-')[1];
     i = parseInt(i) + direction;
     l.setActiveItem(i);
-    if(i == 2) Ext.getCmp('card-2').getForm().load([{'first':'yes'},{'last':'no'}]);
+    if (i == 2) {
+        Ext.getCmp('first').setRawValue(anser1.filter(item => item.checked == true)[0].boxLabel)
+        Ext.getCmp('last').setRawValue(anser2.filter(item => item.checked == true).map(item => item.boxLabel))
+    }
     Ext.getCmp('prev').setDisabled(i == 0);
     Ext.getCmp('next').setDisabled(i == 2);
 };
@@ -97,7 +113,5 @@ let cartConfig = {
 }
 
 var cardLayout = new Ext.Panel({
-    collapsible: false,
-    region: 'center',
     items: cartConfig
 })

@@ -23,33 +23,9 @@
             //主类
             let main = new Ext.Container({
                 renderTo: 'layout',
-                layout: 'border',
-                style: "margin: 50px 0 0 200px",
-                height: 800,
-                width: 1500,
-                defaults: {
-                    collapsible: true,
-                    bodyStyle: 'padding:15px'
-                },
-                items: [{
-                    region: 'north',
-                    height: 100,
-                    layout: 'fit',
-                }, {
-                    region: 'south',
-                    height: 100,
-                    layout: 'fit',
-                }, {
-                    region: 'west',
-                    width: 100,
-                    collapsible: true,
-                    layout: 'fit',
-                }, {
-                    region: 'east',
-                    width: 100,
-                    collapsible: true,
-                    layout: 'fit',
-                }, cardLayout]
+                layout: 'fit',
+                height:800,
+                items: [cardLayout]
             });
         });
     </script>
